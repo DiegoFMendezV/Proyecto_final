@@ -1,0 +1,26 @@
+.image{
+    width: 100px;
+}
+
+.Nav_item{
+    text-decoration: none;
+    color: #6d91d8;
+    font-size: x-large;
+}
+
+.Nav_item1{
+    color: #6d91d8;
+}
+
+.Nav_item1:hover{
+    color: #6d91d8;
+}
+
+.Nav_item:hover{
+    color: white;
+}
+
+h3{
+    text-align: center;
+    margin: 10px;
+}
