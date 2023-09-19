@@ -8,6 +8,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 function Vuelo() {
+
     const params = useParams()
     const [vuelo, setVuelo] = useState({})
     useEffect(() => {
@@ -30,6 +31,8 @@ function Vuelo() {
                             <th>Ciudad Destino</th>
                             <th>Fecha y Hora Partida</th>
                             <th>Fecha y Hora Llegada</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>                          
@@ -41,11 +44,14 @@ function Vuelo() {
                             <td>{vuelo.destino}</td>
                             <td>{vuelo.fecha_hora_vuelo_partida}</td>
                             <td>{vuelo.fecha_hora_vuelo_llegada}</td>
+                            <td><Button variant="warning">Editar</Button></td>
+                            <td><Button variant="danger">Eliminar</Button></td>
                         </tr>
                     </tbody>
                 </Table>
                 <Link to={`/`}><Button variant="primary">Atrás</Button></Link>
             </Container>
+           
         </>
     )
 }
