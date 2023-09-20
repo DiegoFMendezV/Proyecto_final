@@ -29,8 +29,8 @@ function Vuelo() {
                             <th>Clase</th>
                             <th>Ciudad Origen</th>
                             <th>Ciudad Destino</th>
-                            <th>Fecha y Hora Partida</th>
-                            <th>Fecha y Hora Llegada</th>
+                            <th>Fecha Partida</th>
+                            <th>Fecha Llegada</th>
                             <th></th>
                             <th></th>
                         </tr>

@@ -14,21 +14,21 @@ function Home() {
     const handleShow = () => setShow(true);
     
     let crearVuelo = () => {
-        let number_vuelo_input = document.getElementById('number_vuelo').value
+        let numero_vuelo_input = document.getElementById('numero_vuelo').value
         let aerolinea_input = document.getElementById('aerolinea').value
         let clase_input = document.getElementById('clase').value
         let origen_input = document.getElementById('origen').value
         let destino_input = document.getElementById('destino').value
-        let fecha_partida_input = document.getElementById('fecha_partida').value
-        let fecha_llegada_input = document.getElementById('fecha_llegada').value
+        let fecha_hora_vuelo_partida_input = document.getElementById('fecha_hora_vuelo_partida').value
+        let fecha_hora_vuelo_llegada_input = document.getElementById('fecha_hora_vuelo_llegada').value
         axios.post('http://localhost:3000/api/vuelos', {
-            number_vuelo: number_vuelo_input,
+            numero_vuelo: numero_vuelo_input,
             aerolinea: aerolinea_input,
             clase: clase_input,
             origen: origen_input,
             destino: destino_input,
-            fecha_partida: fecha_partida_input,
-            fecha_llegada: fecha_llegada_input
+            fecha_hora_vuelo_partida: fecha_hora_vuelo_partida_input,
+            fecha_hora_vuelo_llegada: fecha_hora_vuelo_llegada_input
         })
             .then((response) => {
             alert('Vuelo creado exitosamente')
@@ -45,10 +45,7 @@ function Home() {
                     <Body />
                 </Row>
             </Container>
-            <div
-                className="modal show"
-                style={{ display: 'block', position: 'initial' }}
-                >
+            <div>
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Crear Nuevo Vuelo</Modal.Title>
@@ -57,7 +54,7 @@ function Home() {
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Número de Vuelo</Form.Label>
-                            <Form.Control type="text" id='number_vuelo'/>
+                            <Form.Control type="text" id='numero_vuelo'/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Aerolínea</Form.Label>
@@ -77,11 +74,11 @@ function Home() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Fecha de Partida</Form.Label>
-                            <Form.Control type="date" id='fecha_partida'/>
+                            <Form.Control type="date" id='fecha_hora_vuelo_partida'/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Fecha de Llegada</Form.Label>
-                            <Form.Control type="date" id='fecha_llegada'/>
+                            <Form.Control type="date" id='fecha_hora_vuelo_llegada'/>
                         </Form.Group>
                         <Button variant="primary" onClick={crearVuelo}>
                             Guardar

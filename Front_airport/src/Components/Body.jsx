@@ -15,8 +15,8 @@ function Body() {
     }, [vuelos])
     
     return (
-        <>
-            <Table striped bordered hover>
+        <div id='div_table'>
+            <Table striped bordered hover id='table'>
                 <thead>
                     <tr>
                         <th>Número de Vuelo</th>
@@ -38,7 +38,7 @@ function Body() {
                     }
                 </tbody>
             </Table>
-        </>
+        </div>
     )
 }
 export default Body
