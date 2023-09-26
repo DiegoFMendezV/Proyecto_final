@@ -1,32 +1,64 @@
 .image{
-    width: 100px;
+    width: 50px;
 }
 
 .Nav_item{
     text-decoration: none;
-    color: #6d91d8;
+    color: #f46a00;
     font-size: x-large;
 }
 
 .Nav_item1{
-    color: #6d91d8;
+    color: #f46a00;
+    text-decoration: underline;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .Nav_item1:hover{
-    color: #6d91d8;
+    color: #f46a00;
 }
 
 .Nav_item:hover{
     color: white;
 }
 
+.image_banner{
+    width: 100%;
+    position: absolute;
+    height: auto;
+}
+
+.container_1{
+    position: relative;
+}
+
+h2{
+    text-align: center;
+    margin: 20px;
+    color: white;
+    box-shadow: 2px 2px 2px 2px white;
+    border-radius: 20px;
+}
+
 h3{
     text-align: center;
-    margin: 10px;
+    margin: 50px;
+    color: white;
+    box-shadow: 2px 2px 2px 2px white;
+    border-radius: 20px;
 }
 
 #crear{
     margin-bottom: 20px;
+    background-color: white;
+    color: #f46a00;
+    font-weight: 800;
+    border: 1px solid #f46a00;
+    box-shadow: 3px 2px 3px 2px white;
+}
+
+#crear:hover{
+    transform:  scale(1.1)
 }
 
 #table{
@@ -35,5 +67,20 @@ h3{
 
 #div_table{
     display: flex;
-    justify-content: center;
+    justify-content: start;
+}
+
+.tabla{
+    text-align: center;
+}
+
+#btn_ver{
+    background-color: #f46a00;
+    border: 1px solid #f46a00;
+}
+
+#btn_ver:hover{
+    background-color: #b75002;
+    border: 1px solid #f46a00;
+    color: white;
 }

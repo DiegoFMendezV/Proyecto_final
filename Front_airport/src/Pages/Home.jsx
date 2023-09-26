@@ -37,10 +37,11 @@ function Home() {
 
     return (
         <>
-            <Header />
-            <Container>
-                <h3>Vuelos Registrados</h3>
-                <Button variant="primary" id='crear' onClick={handleShow}>Crear Nuevo</Button>
+            <Header/>
+            <img className="image_banner" src="https://img1.wallspic.com/previews/4/6/2/3/13264/13264-ingenieria_aeroespacial-los_viajes_aereos-vuelo-aviacion-cuerpo_estrecho_de_aeronaves-x750.jpg" alt="" />
+            <Container className='container_1'>
+                <h2>Vuelos Registrados</h2>
+                <Button id='crear' onClick={handleShow}>Crear Nuevo</Button>
                 <Row>
                     <Body />
                 </Row>
@@ -74,13 +75,13 @@ function Home() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Fecha de Partida</Form.Label>
-                            <Form.Control type="date" id='fecha_hora_vuelo_partida'/>
+                            <Form.Control type="text" id='fecha_hora_vuelo_partida' placeholder='AAAA/MM/DD'/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Fecha de Llegada</Form.Label>
-                            <Form.Control type="date" id='fecha_hora_vuelo_llegada'/>
+                            <Form.Control type="text" id='fecha_hora_vuelo_llegada' placeholder='AAAA/MM/DD'/>
                         </Form.Group>
-                        <Button variant="primary" onClick={crearVuelo}>
+                        <Button id="btn_ver" onClick={crearVuelo}>
                             Guardar
                         </Button>
                     </Form>

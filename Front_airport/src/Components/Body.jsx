@@ -18,8 +18,8 @@ function Body() {
         <div id='div_table'>
             <Table striped bordered hover id='table'>
                 <thead>
-                    <tr>
-                        <th>Número de Vuelo</th>
+                    <tr className='tabla'>
+                        <th>N°. Vuelo</th>
                         <th>Aerolínea</th>
                         <th>Detalle</th>
                     </tr>
@@ -31,7 +31,7 @@ function Body() {
                                 <tr key={vuelo._id}>
                                     <td>{vuelo.numero_vuelo}</td>
                                     <td>{vuelo.aerolinea}</td>
-                                    <td><Link to={`/${vuelo._id}`}><Button variant="primary">Ver Más</Button></Link></td>
+                                    <td className='tabla'><Link to={`/${vuelo._id}`}><Button id="btn_ver">Ver Más</Button></Link></td>
                                 </tr>
                             )
                         })

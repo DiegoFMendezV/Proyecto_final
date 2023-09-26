@@ -6,14 +6,14 @@ import {
 } from 'react-router-dom'
 
 import Home from './Pages/Home'
-import Vuelos from './Pages/Vuelos'
+import Vuelo from './Pages/Vuelo'
  
 function MyRoutes() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/:id' element={<Vuelos />} />
+                <Route path='/:id' element={<Vuelo />} />
             </Routes>
         </BrowserRouter>
     )
