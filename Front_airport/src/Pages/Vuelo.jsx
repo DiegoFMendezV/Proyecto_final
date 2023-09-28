@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { redirect, redirectDocument, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Header from '../Layouts/Header'
@@ -11,10 +11,11 @@ import Form from 'react-bootstrap/Form';
 import Swal from 'sweetalert2'
 
 export default function Vuelo() {
+    
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    
     const params = useParams()
     const [vuelo, setVuelo] = useState({})
     useEffect(() => {
@@ -32,6 +33,8 @@ export default function Vuelo() {
           });
       }  
 
+    
+
     function EliminarVuelo() {
         axios.delete(`http://localhost:3000/api/vuelos/${params.id}`)
         .then(() => {
@@ -39,8 +42,8 @@ export default function Vuelo() {
                 icon: 'success',
                 title: 'Vuelo eliminado correctamente',  
             })
-            return redirect("/")
-            });
+        });
+        
     }
 
     return (
