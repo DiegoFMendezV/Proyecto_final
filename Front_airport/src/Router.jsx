@@ -7,6 +7,8 @@ import {
 
 import Home from './Pages/Home'
 import Vuelo from './Pages/Vuelo'
+import Contacto from './Pages/Contacto'
+import Aerolineas from './Pages/Aerolineas'
  
 function MyRoutes() {
     return (
@@ -14,6 +16,8 @@ function MyRoutes() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/:id' element={<Vuelo />} />
+                <Route path='/contacto' element={<Contacto />} />
+                <Route path='/aerolineas' element={<Aerolineas />} />
             </Routes>
         </BrowserRouter>
     )

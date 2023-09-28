@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Swal from 'sweetalert2'
 
 function Home() {
     const [show, setShow] = useState(false);
@@ -31,7 +32,11 @@ function Home() {
             fecha_hora_vuelo_llegada: fecha_hora_vuelo_llegada_input
         })
             .then((response) => {
-            alert('Vuelo creado exitosamente')
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Vuelo creado correctamente',  
+                  })
+                  
         })
     }
 
@@ -53,34 +58,36 @@ function Home() {
                     </Modal.Header>
                     <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>Número de Vuelo</Form.Label>
                             <Form.Control type="text" id='numero_vuelo'/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>Aerolínea</Form.Label>
                             <Form.Control type="text" id='aerolinea'/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>Clase</Form.Label>
                             <Form.Control type="text" id='clase'/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>Origen</Form.Label>
                             <Form.Control type="text" id='origen'/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>Destino</Form.Label>
                             <Form.Control type="text" id='destino'/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Fecha de Partida</Form.Label>
-                            <Form.Control type="text" id='fecha_hora_vuelo_partida' placeholder='AAAA/MM/DD'/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Fecha de Llegada</Form.Label>
-                            <Form.Control type="text" id='fecha_hora_vuelo_llegada' placeholder='AAAA/MM/DD'/>
-                        </Form.Group>
+                        <div className='fechas'>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Fecha de Partida</Form.Label>
+                                <Form.Control type="text" id='fecha_hora_vuelo_partida' placeholder='AAAA/MM/DD'/>
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Fecha de Llegada</Form.Label>
+                                <Form.Control type="text" id='fecha_hora_vuelo_llegada' placeholder='AAAA/MM/DD'/>
+                            </Form.Group>
+                        </div>
                         <Button id="btn_ver" onClick={crearVuelo}>
                             Guardar
                         </Button>

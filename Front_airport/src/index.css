@@ -62,7 +62,7 @@ h3{
 }
 
 #table{
-    width: 50%;
+    width: 45%;
 }
 
 #div_table{
@@ -83,4 +83,92 @@ h3{
     background-color: #b75002;
     border: 1px solid #f46a00;
     color: white;
+}
+
+.fechas{
+    display: flex;
+    gap: 50px;
+}
+
+.contacto{
+    padding: 15px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    border: 3px solid #2b3035;
+    border-radius: 20px;
+    box-shadow: 3px 2px 3px 2px #2b3035;
+}
+
+.imagen_foto{
+    width: 180px;
+    border-radius: 50%;
+}
+
+.datos{
+    text-align: center;
+    
+}
+
+.datos p{
+    margin-bottom: 8px;
+    color: #2b3035;
+}
+
+.datos p a{
+    text-decoration: none;
+}
+
+.job{
+    color: #2b3035;
+    margin: 8px;
+}
+
+.icon{
+    width: 20px;
+}
+
+.iconos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.iconos .icon_html{
+    width: 80px;
+}
+
+.iconos .icon_css{
+    width: 50px;
+}
+
+.iconos .icon_js{
+    width: 65px;
+}
+
+.iconos .icon_2{
+    width: 90px;
+}
+
+.iconos .icon_1{
+    width: 100px;
+}
+
+.iconos .icon_3{
+    width: 120px;
+}
+
+.iconos .icon_4{
+    width: 140px;
+}
+
+h1{
+    text-align: center;
+    color: #f46a00;
+    margin: 30px;
+}
+
+.aerolineas{
+    width: 1300px;
 }
