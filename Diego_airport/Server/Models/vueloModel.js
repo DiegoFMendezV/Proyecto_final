@@ -8,7 +8,8 @@ const vueloSchema = mongoose.Schema({
         type: String
     },
     numero_vuelo:{
-        type: String
+        type: String,
+        uniqued: true
     },
     origen:{
         type: String
@@ -17,10 +18,10 @@ const vueloSchema = mongoose.Schema({
         type: String
     },
     fecha_hora_vuelo_partida:{
-        type: Date
+        type: String
     },
     fecha_hora_vuelo_llegada:{
-        type: Date
+        type: String
     }
 })
 const Vuelo = mongoose.model("Vuelo", vueloSchema)
