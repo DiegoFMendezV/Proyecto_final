@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Header from '../Layouts/Header'
@@ -11,39 +11,52 @@ import Form from 'react-bootstrap/Form';
 import Swal from 'sweetalert2'
 
 export default function Vuelo() {
-    
+    const navigate = useNavigate();
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     
+    const URL = "http://localhost:3000/api/vuelos"
+
     const params = useParams()
     const [vuelo, setVuelo] = useState({})
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/vuelos/${params.id}`).then((response) => {
+        axios.get(URL+`/${params.id}`).then((response) => {
             setVuelo(response.data)
         })
-    }, [])
+    }, [])  
 
-    function updateVuelo() {
-        axios.put(`http://localhost:3000/api/vuelos/${params.id}`, {
-            
-          })
-          .then((response) => {
-            setVuelo(response.data);
-          });
-      }  
+    const handleDelete = async () => {
+        Swal.fire({
+            title: `Estás seguro de querer eliminar el vuelo No. ${vuelo.numero_vuelo}?`,
+            text: "No se podrá revertir!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, eliminar!'
+          }).then((result) => {
+            if (result.isConfirmed) {
 
-    
-
-    function EliminarVuelo() {
-        axios.delete(`http://localhost:3000/api/vuelos/${params.id}`)
-        .then(() => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Vuelo eliminado correctamente',  
-            })
-        });
-        
+                axios.delete(URL+`/${params.id}`).then((response) => {
+                    if(response.status === 200){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ha ocurrido un error',
+                            text: 'Intenta nuevamente'  
+                          })
+                    }else{
+                        Swal.fire({
+                            icon: 'success',
+                            title: `El vuelo No. ${response.data.numero_vuelo} se ha eliminado correctamente`,  
+                          })
+                          navigate("/");
+                    }
+                })  
+            }
+        })
     }
 
     return (
@@ -76,7 +89,7 @@ export default function Vuelo() {
                             <td>{vuelo.fecha_hora_vuelo_partida}</td>
                             <td>{vuelo.fecha_hora_vuelo_llegada}</td>
                             <td className='tabla'><Button variant="success" onClick={handleShow}>Editar</Button></td>
-                            <td className='tabla'><Button variant="danger" onClick={EliminarVuelo}>Eliminar</Button></td>
+                            <td className='tabla'><Button variant="danger" onClick={handleDelete}>Eliminar</Button></td>
                             
                         </tr>
                     </tbody>
