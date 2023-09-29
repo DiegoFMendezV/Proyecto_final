@@ -14,8 +14,17 @@ export default function Vuelo() {
     const navigate = useNavigate();
 
     const [show, setShow] = useState(false);
+    const [dataModal, setDataModal] = useState({numero_vuelo: "", aerolinea: "", clase: "", origen: "", destino: "", fecha_hora_vuelo_partida: "", fecha_hora_vuelo_llegada: ""})
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
+    const handleChangeModal = ({target}) =>{
+        setDataModal({
+            ...dataModal,
+            [target.name]: target.value
+        })
+    }
     
     const URL = "http://localhost:3000/api/vuelos"
 
@@ -29,7 +38,7 @@ export default function Vuelo() {
 
     const handleDelete = async () => {
         Swal.fire({
-            title: `Estás seguro de querer eliminar el vuelo No. ${vuelo.numero_vuelo}?`,
+            title: `Estás seguro de eliminar el vuelo No. ${vuelo.numero_vuelo}?`,
             text: "No se podrá revertir!",
             icon: 'warning',
             showCancelButton: true,
@@ -41,22 +50,46 @@ export default function Vuelo() {
             if (result.isConfirmed) {
 
                 axios.delete(URL+`/${params.id}`).then((response) => {
-                    if(response.status === 200){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Ha ocurrido un error',
-                            text: 'Intenta nuevamente'  
-                          })
-                    }else{
+                    if(response.status === 202){
                         Swal.fire({
                             icon: 'success',
                             title: `El vuelo No. ${response.data.numero_vuelo} se ha eliminado correctamente`,  
                           })
                           navigate("/");
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ha ocurrido un error',
+                            text: 'Intenta nuevamente'  
+                          })
                     }
                 })  
             }
         })
+    }
+
+    const handleEdit = () => {
+        handleShow();
+        setDataModal(vuelo)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const response = await axios.put(URL+`/${params.id}`, dataModal)
+        if(response.status === 200){
+            Swal.fire({
+                icon: 'success',
+                title: `El vuelo No. ${response.data.numero_vuelo} se ha actualizado correctamente`,  
+              })
+              handleClose();
+              navigate("/");
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Ha ocurrido un error',
+                text: 'Intenta nuevamente'  
+              })
+        }
     }
 
     return (
@@ -88,8 +121,8 @@ export default function Vuelo() {
                             <td>{vuelo.destino}</td>
                             <td>{vuelo.fecha_hora_vuelo_partida}</td>
                             <td>{vuelo.fecha_hora_vuelo_llegada}</td>
-                            <td className='tabla'><Button variant="success" onClick={handleShow}>Editar</Button></td>
-                            <td className='tabla'><Button variant="danger" onClick={handleDelete}>Eliminar</Button></td>
+                            <td className='tabla'><Button variant="outline-success" onClick={handleEdit}>Editar</Button></td>
+                            <td className='tabla'><Button variant="outline-danger" onClick={handleDelete}>Eliminar</Button></td>
                             
                         </tr>
                     </tbody>
@@ -102,34 +135,34 @@ export default function Vuelo() {
                         <Modal.Title>Editar Vuelo No. {vuelo.numero_vuelo}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    <Form>
+                    <Form onSubmit = {handleSubmit}>
                         <Form.Group className="mb-3" >
                             <Form.Label>Aerolínea</Form.Label>
-                            <Form.Control type="text" id='aerolinea' />
+                            <Form.Control type="text" id='aerolinea' name="aerolinea" value={dataModal.aerolinea} onChange={handleChangeModal}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Clase</Form.Label>
-                            <Form.Control type="text" id='clase' />
+                            <Form.Control type="text" id='clase' name="clase" value={dataModal.clase} onChange={handleChangeModal}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Origen</Form.Label>
-                            <Form.Control type="text" id='origen' />
+                            <Form.Control type="text" id='origen' name="origen" value={dataModal.origen} onChange={handleChangeModal}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Destino</Form.Label>
-                            <Form.Control type="text" id='destino' />
+                            <Form.Control type="text" id='destino' name="destino" value={dataModal.destino} onChange={handleChangeModal}/>
                         </Form.Group>
                         <div className='fechas'>
                             <Form.Group className="mb-3">
                                 <Form.Label>Fecha de Partida</Form.Label>
-                                <Form.Control type="text" id='fecha_hora_vuelo_partida'  placeholder='AAAA/MM/DD'/>
+                                <Form.Control type="text" id='fecha_hora_vuelo_partida' name="fecha_hora_vuelo_partida" value={dataModal.fecha_hora_vuelo_partida} onChange={handleChangeModal} placeholder='AAAA/MM/DD'/>
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Fecha de Llegada</Form.Label>
-                                <Form.Control type="text" id='fecha_hora_vuelo_llegada' placeholder='AAAA/MM/DD'/>
+                                <Form.Control type="text" id='fecha_hora_vuelo_llegada' name="fecha_hora_vuelo_llegada" value={dataModal.fecha_hora_vuelo_llegada} onChange={handleChangeModal} placeholder='AAAA/MM/DD'/>
                             </Form.Group>
                         </div>
-                        <Button id="btn_ver" onClick={updateVuelo}>
+                        <Button type="submit" id="btn_ver">
                             Guardar
                         </Button>
                     </Form>

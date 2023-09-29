@@ -23,7 +23,7 @@ const newVuelo = () => {
     }
 
     const URL = "http://localhost:3000/api/vuelos"
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await axios.post(URL, vuelo);
@@ -32,6 +32,7 @@ const newVuelo = () => {
                 icon: 'success',
                 title: `El vuelo No. ${response.data.numero_vuelo} se ha creado correctamente`,  
               })
+              handleClose();
         }else{
             Swal.fire({
                 icon: 'error',
